@@ -5,7 +5,7 @@ with a local MySQL Database
 
 ## Installation
 
-Just clone the project a ```Import Project from Intellij```
+Just clone the project and ```Import Project from Intellij```
 Build all dependencies and Run.
 
 
