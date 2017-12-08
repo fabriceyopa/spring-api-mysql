@@ -1,4 +1,4 @@
-#Spring Boot API With MySQL
+# Spring Boot API With MySQL
 
 This is a sample project to demonstrate how to configure Spring Boot
 with a local MySQL Database
