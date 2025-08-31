@@ -21,22 +21,21 @@ public class TopicService {
         return topics;
     }
 
-    public Topic getTopic(String id){
-        //return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
-        return topicRepository.findOne(id);
+    public Topic getTopic(String id) {
+        // return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+        return topicRepository.findById(id).orElse(null);
     }
 
-    public void addTopic(Topic topic){
+    public void addTopic(Topic topic) {
         topicRepository.save(topic);
     }
 
-    public void updateTopic(String id, Topic topic){
+    public void updateTopic(String id, Topic topic) {
         topicRepository.save(topic);
     }
 
-    public void deleteTopic(String id){
-        topicRepository.delete(id);
+    public void deleteTopic(String id) {
+        topicRepository.deleteById(id);
     }
-
 
 }

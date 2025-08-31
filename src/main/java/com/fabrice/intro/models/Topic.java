@@ -1,6 +1,6 @@
 package com.fabrice.intro.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "topic")
 public class Topic {
@@ -13,7 +13,8 @@ public class Topic {
     @Column(name = "description")
     private String description;
 
-    public Topic() { }
+    public Topic() {
+    }
 
     public Topic(String id, String name, String description) {
         this.id = id;
