@@ -18,8 +18,7 @@ public class TopicService {
     return topics;
   }
 
-  public Topic getTopic(String id) {
-    // return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+  public Topic getTopic(Integer id) {
     return topicRepository.findById(id).orElse(null);
   }
 
@@ -27,11 +26,11 @@ public class TopicService {
     topicRepository.save(topic);
   }
 
-  public void updateTopic(String id, Topic topic) {
+  public void updateTopic(Topic topic) {
     topicRepository.save(topic);
   }
 
-  public void deleteTopic(String id) {
+  public void deleteTopic(Integer id) {
     topicRepository.deleteById(id);
   }
 }

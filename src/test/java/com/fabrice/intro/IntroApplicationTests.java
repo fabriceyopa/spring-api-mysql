@@ -13,12 +13,12 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @ActiveProfiles("test")
 public class IntroApplicationTests {
 
-  @Container
-  @ServiceConnection
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine")
-      .withDatabaseName("testdb")
-      .withUsername("test")
-      .withPassword("test");
+  @Container @ServiceConnection
+  static PostgreSQLContainer<?> postgres =
+      new PostgreSQLContainer<>("postgres:16-alpine")
+          .withDatabaseName("testdb")
+          .withUsername("test")
+          .withPassword("test");
 
   @Test
   public void contextLoads() {

@@ -3,8 +3,10 @@ package com.fabrice.intro.repositories;
 import com.fabrice.intro.models.Course;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CourseRepository extends CrudRepository<Course, String> {
+@Repository
+public interface CourseRepository extends CrudRepository<Course, Integer> {
 
-  List<Course> findByTopicId(String topicId);
+  List<Course> findByTopicId(Integer topicId);
 }

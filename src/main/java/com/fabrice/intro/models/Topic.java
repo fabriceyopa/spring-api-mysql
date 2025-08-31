@@ -7,7 +7,7 @@ public class Topic {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private String id;
+  private Integer id;
 
   @Column(name = "name")
   private String name;
@@ -17,17 +17,28 @@ public class Topic {
 
   public Topic() {}
 
-  public Topic(String id, String name, String description) {
+  public Topic(Integer id) {
+    this.id = id;
+    this.name = "";
+    this.description = "";
+  }
+
+  public Topic(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
+  public Topic(Integer id, String name, String description) {
     this.id = id;
     this.name = name;
     this.description = description;
   }
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

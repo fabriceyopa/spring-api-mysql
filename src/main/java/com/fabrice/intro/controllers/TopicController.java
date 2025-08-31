@@ -17,7 +17,7 @@ public class TopicController {
   }
 
   @GetMapping("/topics/{id}")
-  public Topic getTopic(@PathVariable String id) {
+  public Topic getTopic(@PathVariable Integer id) {
     return topicService.getTopic(id);
   }
 
@@ -28,11 +28,11 @@ public class TopicController {
 
   @PutMapping("/topics/{id}")
   public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
-    topicService.updateTopic(id, topic);
+    topicService.updateTopic(topic);
   }
 
   @DeleteMapping("/topics/{id}")
-  public void deleteTopic(@PathVariable String id) {
+  public void deleteTopic(@PathVariable Integer id) {
     topicService.deleteTopic(id);
   }
 }
