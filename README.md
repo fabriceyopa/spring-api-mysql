@@ -7,9 +7,3 @@ with a local MySQL Database
 
 Just clone the project and ```Import Project from Intellij```
 Build all dependencies and Run.
-
-
-All the default endpoints are store in the ```controllers```
-folders.
-
-Simple as that.
