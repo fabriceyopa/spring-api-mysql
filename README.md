@@ -1,6 +1,5 @@
 # Spring Boot API with PostgreSQL
 
-[![Build Status](https://github.com/fayo-labs/spring-api-mysql/workflows/SonarCloud/badge.svg)](https://github.com/fayo-labs/spring-api-mysql/actions)
 [![codecov](https://codecov.io/gh/fayo-labs/spring-api-mysql/branch/master/graph/badge.svg)](https://codecov.io/gh/fayo-labs/spring-api-mysql)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fayo-labs_spring-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=fayo-labs_spring-api)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fayo-labs_spring-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=fayo-labs_spring-api)
