@@ -47,7 +47,7 @@ jobs:
       - name: Run tests with coverage
         run: mvn -B clean test jacoco:report
       - name: Generate test report
-        uses: dorny/test-reporter@v1.9.1
+        uses: dorny/test-reporter@v2
         if: success() || failure()
         with:
           name: Maven Tests
