@@ -1,45 +1,65 @@
+/*
+* MIT License
+* Copyright (c) 2025 Fabrice Yopa
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
+* WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+* WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+* LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+* CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 package com.fabrice.intro.controllers;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.*;
 
 import com.fabrice.intro.models.Course;
 import com.fabrice.intro.models.Topic;
 import com.fabrice.intro.services.CourseService;
-import java.util.List;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CourseController {
 
-  private final CourseService courseService;
+    private final CourseService courseService;
 
-  public CourseController(CourseService courseService) {
-    this.courseService = courseService;
-  }
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
-  @GetMapping("/topics/{id}/courses")
-  public List<Course> getTopics(@PathVariable Integer id) {
-    return courseService.getAllCourses(id);
-  }
+    @GetMapping("/topics/{id}/courses")
+    public List<Course> getTopics(@PathVariable Integer id) {
+        return courseService.getAllCourses(id);
+    }
 
-  @GetMapping("/topics/{topicId}/courses/{id}")
-  public Course getCourse(@PathVariable Integer id) {
-    return courseService.getCourse(id);
-  }
+    @GetMapping("/topics/{topicId}/courses/{id}")
+    public Course getCourse(@PathVariable Integer id) {
+        return courseService.getCourse(id);
+    }
 
-  @PostMapping("/topics/{topicId}/courses")
-  public void addCourse(@RequestBody Course course, @PathVariable String topicId) {
-    course.setTopic(new Topic("", ""));
-    courseService.addCourse(course);
-  }
+    @PostMapping("/topics/{topicId}/courses")
+    public void addCourse(@RequestBody Course course, @PathVariable String topicId) {
+        course.setTopic(new Topic("", ""));
+        courseService.addCourse(course);
+    }
 
-  @PutMapping("/topics/{topicId}/courses/{id}")
-  public void updateCourse(
-      @RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
-    course.setTopic(new Topic("", ""));
-    courseService.updateCourse(course);
-  }
+    @PutMapping("/topics/{topicId}/courses/{id}")
+    public void updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
+        course.setTopic(new Topic("", ""));
+        courseService.updateCourse(course);
+    }
 
-  @DeleteMapping("/topics/{topicId}/courses/{id}")
-  public void deleteCourse(@PathVariable Integer id) {
-    courseService.deleteCourse(id);
-  }
+    @DeleteMapping("/topics/{topicId}/courses/{id}")
+    public void deleteCourse(@PathVariable Integer id) {
+        courseService.deleteCourse(id);
+    }
 }

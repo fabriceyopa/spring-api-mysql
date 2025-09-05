@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.fabrice</groupId>
@@ -15,7 +16,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.3</version>
-		<relativePath/>
+		<relativePath />
 		<!-- lookup parent from repository -->
 	</parent>
 
@@ -101,9 +102,139 @@
 				<version>2.46.1</version>
 				<configuration>
 					<java>
-						<googleJavaFormat/>
+						<!-- Eclipse formatter configuration -->
+						<eclipse>
+							<file>eclipse-formatter.xml</file>
+						</eclipse>
+
+						<!-- Import order configuration -->
+						<importOrder>
+							<order>java|javax,org,com,com.fabrice</order>
+						</importOrder>
+
+						<!-- Remove unused imports -->
+						<removeUnusedImports />
+
+						<!-- Format annotations -->
+						<formatAnnotations />
+
+						<!-- License header -->
+						<licenseHeader>
+							<content>
+<![CDATA[/*
+* MIT License
+* Copyright (c) $YEAR Fabrice Yopa
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
+* WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+* WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+* LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+* CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/]]>
+							</content>
+							<delimiter>package </delimiter>
+						</licenseHeader>
+
+						<!-- Additional formatting rules -->
+						<toggleOffOn />
+						<trimTrailingWhitespace />
+						<endWithNewline />
+
+						<!-- Exclude generated files -->
+						<excludes>
+							<exclude>**/target/**</exclude>
+							<exclude>**/*.generated</exclude>
+						</excludes>
 					</java>
+
+					<!-- XML formatting -->
+					<formats>
+						<format>
+							<includes>
+								<include>*.xml</include>
+								<include>src/**/*.xml</include>
+							</includes>
+							<eclipseWtp>
+								<type>XML</type>
+							</eclipseWtp>
+							<trimTrailingWhitespace />
+							<endWithNewline />
+						</format>
+
+						<!-- Properties files -->
+						<format>
+							<includes>
+								<include>src/**/*.properties</include>
+							</includes>
+							<trimTrailingWhitespace />
+							<endWithNewline />
+						</format>
+
+						<!-- YAML files -->
+						<format>
+							<includes>
+								<include>*.yml</include>
+								<include>*.yaml</include>
+								<include>src/**/*.yml</include>
+								<include>src/**/*.yaml</include>
+							</includes>
+							<prettier>
+								<devDependencyProperties>
+									<property>
+										<name>prettier</name>
+										<value>2.8.8</value>
+									</property>
+									<property>
+										<name>@prettier/plugin-xml</name>
+										<value>2.2.0</value>
+									</property>
+								</devDependencyProperties>
+								<config>
+									<tabWidth>2</tabWidth>
+									<useTabs>false</useTabs>
+								</config>
+							</prettier>
+						</format>
+
+						<!-- Markdown files -->
+						<format>
+							<includes>
+								<include>*.md</include>
+								<include>src/**/*.md</include>
+							</includes>
+							<prettier>
+								<devDependencyProperties>
+									<property>
+										<name>prettier</name>
+										<value>2.8.8</value>
+									</property>
+								</devDependencyProperties>
+								<config>
+									<tabWidth>2</tabWidth>
+									<useTabs>false</useTabs>
+									<proseWrap>preserve</proseWrap>
+								</config>
+							</prettier>
+						</format>
+					</formats>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+				</executions>
 			</plugin>
 			<!-- JaCoCo Test Coverage Plugin -->
 			<plugin>
