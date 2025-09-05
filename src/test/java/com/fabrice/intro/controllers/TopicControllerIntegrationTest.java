@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fabrice.intro.AbstractPostgresIntegrationTest;
 import com.fabrice.intro.models.Topic;
 import com.fabrice.intro.repositories.TopicRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,30 +18,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
+/**
+ * Integration tests for TopicController. Extends AbstractPostgresIntegrationTest to use the shared
+ * PostgreSQL container.
+ */
 @SpringBootTest
-@Testcontainers
-@ActiveProfiles("test")
 @AutoConfigureWebMvc
 @Transactional
-class TopicControllerIntegrationTest {
-
-  @Container @ServiceConnection
-  static PostgreSQLContainer<?> postgres =
-      new PostgreSQLContainer<>("postgres:16-alpine")
-          .withDatabaseName("testdb")
-          .withUsername("test")
-          .withPassword("test");
+class TopicControllerIntegrationTest extends AbstractPostgresIntegrationTest {
 
   @Autowired private WebApplicationContext webApplicationContext;
 

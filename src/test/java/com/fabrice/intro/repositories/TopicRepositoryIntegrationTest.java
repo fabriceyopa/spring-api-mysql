@@ -2,35 +2,26 @@ package com.fabrice.intro.repositories;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.fabrice.intro.AbstractPostgresIntegrationTest;
 import com.fabrice.intro.models.Topic;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.test.context.ActiveProfiles;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
+/**
+ * Integration tests for TopicRepository. Extends AbstractPostgresIntegrationTest to use the shared
+ * PostgreSQL container.
+ */
 @DataJpaTest
-@Testcontainers
-@ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class TopicRepositoryIntegrationTest {
-
-  @Container @ServiceConnection
-  static PostgreSQLContainer<?> postgres =
-      new PostgreSQLContainer<>("postgres:16-alpine")
-          .withDatabaseName("testdb")
-          .withUsername("test")
-          .withPassword("test");
+class TopicRepositoryIntegrationTest extends AbstractPostgresIntegrationTest {
 
   @Autowired private TopicRepository topicRepository;
 
   @Test
-  public void shouldSaveAndFindTopic() {
+  void shouldSaveAndFindTopic() {
     // Given
     Topic topic = new Topic("Spring Boot", "Learn Spring Boot framework");
 
@@ -48,7 +39,7 @@ public class TopicRepositoryIntegrationTest {
   }
 
   @Test
-  public void shouldDeleteTopic() {
+  void shouldDeleteTopic() {
     // Given
     Topic topic = new Topic("Java", "Learn Java programming");
     topicRepository.save(topic);
@@ -62,7 +53,7 @@ public class TopicRepositoryIntegrationTest {
   }
 
   @Test
-  public void shouldFindAllTopics() {
+  void shouldFindAllTopics() {
     // Given
     Topic topic1 = new Topic("Docker", "Learn Docker containerization");
     Topic topic2 = new Topic("Kubernetes", "Learn Kubernetes orchestration");

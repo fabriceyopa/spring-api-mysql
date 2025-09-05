@@ -2,32 +2,17 @@ package com.fabrice.intro;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.test.context.ActiveProfiles;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
+/**
+ * Integration tests for the main Spring Boot application. Extends AbstractPostgresIntegrationTest
+ * to use the shared PostgreSQL container.
+ */
 @SpringBootTest
-@Testcontainers
-@ActiveProfiles("test")
-public class IntroApplicationTests {
-
-  @Container @ServiceConnection
-  static PostgreSQLContainer<?> postgres =
-      new PostgreSQLContainer<>("postgres:16-alpine")
-          .withDatabaseName("testdb")
-          .withUsername("test")
-          .withPassword("test");
+public class IntroApplicationTests extends AbstractPostgresIntegrationTest {
 
   @Test
-  public void contextLoads() {
-    // Test that the application context loads successfully with Testcontainers
-  }
-
-  @Test
-  public void postgresContainerIsRunning() {
+  void postgresContainerIsRunning() {
     // Test that the PostgreSQL container is running
-    assert postgres.isRunning();
+    assert isPostgresRunning();
   }
 }
