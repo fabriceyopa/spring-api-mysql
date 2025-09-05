@@ -47,13 +47,14 @@ jobs:
       - name: Run tests with coverage
         run: mvn -B clean test jacoco:report
       - name: Generate test report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Maven Tests
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
+          max-annotations: 10
       - name: Build and analyze with SonarCloud
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
